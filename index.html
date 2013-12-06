@@ -1,49 +1,51 @@
 <html ng-app="todo" ng-controller="TodoCtrl">
-<head>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.responsive.css"/>
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
-	<link href='http://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'/>
-	<link href='http://fonts.googleapis.com/css?family=Snippet' rel='stylesheet' type='text/css'/>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script type="text/javascript" src="js/todo.js"></script>
-	<script type="text/javascript" src="js/controllers.js"></script>
-</head>
-<body>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<span class="span4 offset4">
-				<h1 class="special-header">Todo List</h1>
-			</span>
-			<span class="span4 offset4 todo-main">
-				<span class="span12">
-					<span class="span12">
-						<input type="text" class="span12 task-input" placeholder="Add task here..." ng-model="currentTask.description" ng-enter="addTask();"/>
-					</span>
-				</span>
-				
-				<span class="span12 task-row" ng-repeat="task in tasks">
-					<span class="span10" style="{{task.style}}">
-						{{$index+1}}.{{task.description}}
-					</span>
-					<span class="span2">
-						<span title="delete task" style="cursor:pointer;" ng-click="deleteTask({{$index}});"><i class="icon-remove"></i></span>
-						<span title="mark task as done" style="cursor:pointer;" ng-click="markDone('{{$index}}');"><i class="icon-ok"></i></span>
-					</span>
-				</span>
-				<span class="span12" ng-show="!tasks||tasks.length==0" style="text-align:center;font-style:italic;margin-left:0;">
-					No tasks found.
-				</span>
-			</span>
-		<footer class="span4 offset4">
-				<p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed 
-					under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-				</footer>
-			</div>
-			<script type="text/javascript" src="js/jquery.min.js"></script>
-		</div>
-	</body>
+        <link href='http://fonts.googleapis.com/css?family=Marck+Script' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Snippet' rel='stylesheet' type='text/css'/>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/todo.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <span class="span4 offset4">
+                    <h1 class="special-header">Todo List</h1>
+                </span>
+                <span class="span4 offset4 todo-main">
+                    <span class="span12">
+                        <span class="span12">
+                            <input type="text" class="span12 task-input" placeholder="Add task here..." ng-model="currentTask.description" ng-enter="addTask();"/>
+                        </span>
+                    </span>
 
-	</html>
+                    <span class="span12 task-row" ng-repeat="(key,task) in tasks">
+                        <task-row-content style="{{task.style}}" index="{{$index+1}}" task="{{task.description}}"/>
+                        <!--
+                        -<span class="span10" style="{{task.style}}">
+                            -    {{$index+1}}.{{task.description}}
+                            -</span>
+                        -<span class="span2">
+                            -    <span title="delete task" style="cursor:pointer;" ng-click="deleteTask({{$index}});"><i class="icon-remove"></i></span>
+                            -    <span title="mark task as done" style="cursor:pointer;" ng-click="markDone('{{$index}}');"><i class="icon-ok"></i></span>
+                            -</span>
+                        -->
+                    </span>
+                    <span class="span12" ng-show="currentIndex==0" style="text-align:center;font-style:italic;margin-left:0;">
+                        No tasks found.
+                    </span>
+                </span>
+                <footer class="span4 offset4">
+                <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed 
+                under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+                </footer>
+            </div>
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+        </div>
+    </body>
+</html>
